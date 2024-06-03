@@ -8,7 +8,7 @@ def main() -> None:
             col_label = col if col < mid else rows[row] - col - 1
             x = max(rows) // 2 - mid + col
             print(
-                f'{{ "label": "{side}{row}{col_label}", "matrix": [{row}, {col}], "x": {x}, "y": {row} }}, '
+                f'{{ "label": "{side}{row}{col_label}", "matrix": [{row}, {x}], "x": {x}, "y": {row} }}, '
             )
 
 
