@@ -46,6 +46,23 @@ static bool on_board_led_high = false;
 static bool on_board_led_blinking = false;
 static uint32_t blink_on_board_led_delay = 250;
 
+bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+  switch (keycode) {
+    case RALT_OSL:
+      if (record->tap.count > 0) {  // Replace tap behavior with OSL.
+        if (!record->event.pressed) {
+          set_oneshot_layer(RALT_OSL_LAYER, ONESHOT_OTHER_KEY_PRESSED);
+        }
+        return false;
+      }
+      break;
+
+    // Other macros...
+  }
+
+  return true;
+}
+
 void reset_on_board_led(void) {
     gpio_write_pin_low(GP25);
     on_board_led_high = false;
@@ -178,14 +195,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //    KC_ESC, OSL(_GAMING_UTIL) , KC_SPC, /*,*/ KC_ENT, LALT(KC_TAB), TO(_QWERTY)
     //),
     [_GAMING] = LAYOUT_ortho_36(
-        KC_LSFT,  KC_1, KC_2, KC_3, KC_4, /*,*/ KC_Y, KC_U, KC_I,    KC_O,   KC_P,
+        KC_LSFT,  KC_Q, KC_W, KC_E, KC_R, /*,*/ KC_Y, KC_U, KC_I,    KC_O,   KC_P,
+        KC_LCTL, KC_A, KC_S, KC_D, KC_F, /*,*/ KC_H, KC_J, KC_K,    KC_L,   KC_SCLN,
+        KC_TAB,  KC_Z, KC_X, KC_C, KC_V, /*,*/ KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH,
+        KC_ESC, OSL(_GAMING_UTIL) , KC_SPC, /*,*/ KC_ENT, LALT(KC_TAB), TO(_QWERTY)
+    ),
+        KC_TAB,  KC_1, KC_2, KC_3, KC_4, /*,*/ KC_Y, KC_U, KC_I,    KC_O,   KC_P,
         KC_LCTL, KC_A, KC_W, KC_D, KC_5, /*,*/ KC_H, KC_J, KC_K,    KC_L,   KC_SCLN,
-        KC_TAB,  KC_Q, KC_D, KC_R, KC_V, /*,*/ KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH,
+        KC_LSFT,  KC_Q, KC_S, KC_E, KC_R, /*,*/ KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH,
         KC_ESC, OSL(_GAMING_UTIL) , KC_SPC, /*,*/ KC_ENT, LALT(KC_TAB), TO(_QWERTY)
     ),
     [_GAMING_UTIL] = LAYOUT_ortho_36(
-        KC_NO, KC_7, KC_8, KC_9, KC_NO, /*,*/ KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-        KC_NO, KC_4, KC_5, KC_6, KC_I,  /*,*/ KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+        KC_NO, KC_5, KC_6, KC_7, KC_8, /*,*/ KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+        KC_NO, KC_4, KC_5, KC_F, KC_9,  /*,*/ KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         KC_Z, KC_X, KC_C, KC_V, KC_0,  /*,*/ KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         KC_T, KC_G, KC_B, /*,*/ KC_NO,    KC_NO, KC_NO
     ),
