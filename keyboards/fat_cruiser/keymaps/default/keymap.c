@@ -145,7 +145,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TO(_GAMING), KC_NO,   KC_NO,   KC_NO,   KC_NO, /*,*/ KC_NO, KC_PSTE, KC_COPY, KC_CUT,  KC_UNDO,
         KC_LGUI,     KC_LALT, KC_LCTL, KC_LSFT, KC_NO, /*,*/ KC_NO, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R,
         KC_NO,       KC_RALT, KC_NO,   KC_NO,   KC_NO, /*,*/ KC_NO, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R,
-        KC_NO,       KC_NO,   KC_NO,   /*,*/    KC_BTN3, KC_BTN1, KC_BTN2
+        KC_NO,       KC_NO,   KC_NO,   /*,*/    KC_BTN1, KC_BTN2, KC_BTN3
     ),
     [_MEDIA] = LAYOUT_ortho_36(
         TO(_GAMING), KC_NO,   KC_NO,   KC_NO,   KC_NO, /*,*/ KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
@@ -171,16 +171,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_F10, KC_F1, KC_F2, KC_F3, KC_PAUS, /*,*/ KC_NO, KC_NO,   KC_NO,   KC_RALT, KC_NO,
         KC_NO,  KC_NO, KC_NO, /*,*/  KC_NO,   KC_NO, KC_NO
     ),
+    //[_GAMING] = LAYOUT_ortho_36(
+    //    KC_LSFT,  KC_Q, KC_W, KC_E, KC_R, /*,*/ KC_Y, KC_U, KC_I,    KC_O,   KC_P,
+    //    KC_LCTL, KC_A, KC_S, KC_D, KC_F, /*,*/ KC_H, KC_J, KC_K,    KC_L,   KC_SCLN,
+    //    KC_TAB,  KC_Z, KC_X, KC_C, KC_V, /*,*/ KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH,
+    //    KC_ESC, OSL(_GAMING_UTIL) , KC_SPC, /*,*/ KC_ENT, LALT(KC_TAB), TO(_QWERTY)
+    //),
     [_GAMING] = LAYOUT_ortho_36(
-        KC_ESC,  KC_Q, KC_W, KC_E, KC_R, /*,*/ KC_Y, KC_U, KC_I,    KC_O,   KC_P,
-        KC_LCTL, KC_A, KC_S, KC_D, KC_F, /*,*/ KC_H, KC_J, KC_K,    KC_L,   KC_SCLN,
-        KC_TAB,  KC_Z, KC_X, KC_C, KC_V, /*,*/ KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH,
-        KC_LSFT, OSL(_GAMING_UTIL) , KC_SPC, /*,*/ KC_ENT, LALT(KC_TAB), TO(_QWERTY)
+        KC_LSFT,  KC_1, KC_2, KC_3, KC_4, /*,*/ KC_Y, KC_U, KC_I,    KC_O,   KC_P,
+        KC_LCTL, KC_A, KC_W, KC_D, KC_5, /*,*/ KC_H, KC_J, KC_K,    KC_L,   KC_SCLN,
+        KC_TAB,  KC_Q, KC_D, KC_R, KC_V, /*,*/ KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH,
+        KC_ESC, OSL(_GAMING_UTIL) , KC_SPC, /*,*/ KC_ENT, LALT(KC_TAB), TO(_QWERTY)
     ),
     [_GAMING_UTIL] = LAYOUT_ortho_36(
         KC_NO, KC_7, KC_8, KC_9, KC_NO, /*,*/ KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         KC_NO, KC_4, KC_5, KC_6, KC_I,  /*,*/ KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-        KC_NO, KC_1, KC_2, KC_3, KC_0,  /*,*/ KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+        KC_Z, KC_X, KC_C, KC_V, KC_0,  /*,*/ KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         KC_T, KC_G, KC_B, /*,*/ KC_NO,    KC_NO, KC_NO
     ),
 };
