@@ -5,23 +5,9 @@
 #include "quantum.h"
 #include QMK_KEYBOARD_H
 
-enum Layer {
-    _QWERTY,
-    _NAVIGATION,
-    _MOUSE,
-    _MEDIA,
-    _NUMBERS,
-    _SYMBOLS,
-    _FUNCTION_KEYS,
-    _GAMING,
-    _GAMING_UTIL,
-};
-
-enum custom_keycodes {
-    V_OSL = SAFE_RANGE,
-};
-
-#define _GAMING_OSL LT(_GAMING_UTIL, KC_V)
+#include "../layers.h"
+#include "../custom_keycodes.h"
+#include "../led.h"
 
 // us international
 #define _KC_Å RALT(KC_W)
@@ -50,105 +36,17 @@ enum custom_keycodes {
 #define _LT_TAB LT(_SYMBOLS, KC_TAB)
 #define _LT_DEL LT(_FUNCTION_KEYS, KC_DEL)
 
-static bool on_board_led_high = false;
-static bool on_board_led_blinking = false;
-static uint32_t blink_on_board_led_delay = 250;
-
-bool holding_v = false;
-
-bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-    switch (keycode) {
-        case _GAMING_OSL:
-            if (record->tap.count == 1 && record->event.pressed) { // press
-                set_oneshot_layer(_GAMING_UTIL, ONESHOT_START);
-            }
-            if (record->tap.count == 0 && record->event.pressed) { // hold
-                register_code(KC_V);
-                holding_v = true;
-            }
-            if (!record->event.pressed) { // release
-                if (holding_v) {
-                    unregister_code(KC_V);
-                    holding_v = false;
-                }
-            }
-            return false;
-    }
-
-    if (IS_LAYER_ON(_GAMING_UTIL) && !record->event.pressed) {
-        clear_oneshot_layer_state(ONESHOT_PRESSED);
-    }
-    return true;
-}
-
-void reset_on_board_led(void) {
-    gpio_write_pin_low(GP25);
-    on_board_led_high = false;
-}
-
-void set_on_board_led(void) {
-    gpio_write_pin_high(GP25);
-    on_board_led_high = true;
-}
-
-/** Callback function for the timer
- * Return 0 to stop the timer, or a positive integer to continue
- */
-uint32_t blink_on_board_led(uint32_t trigger_time, void *cb_arg) {
-    if (!on_board_led_blinking) {
-        return blink_on_board_led_delay;
-    }
-
-    if (on_board_led_high) {
-        reset_on_board_led();
-    } else {
-        set_on_board_led();
-    }
-
-    return blink_on_board_led_delay;
-}
-
 void keyboard_pre_init_user(void) {
-    gpio_set_pin_output(GP25);
-    defer_exec(blink_on_board_led_delay, blink_on_board_led, NULL);
+    keyboard_pre_init_user_led();
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    on_board_led_blinking = false;
-    reset_on_board_led();
-
-    switch (get_highest_layer(state)) {
-        case _QWERTY:
-            break;
-        case _NAVIGATION:
-            on_board_led_blinking = true;
-            break;
-        case _MOUSE:
-            on_board_led_blinking = true;
-            break;
-        case _MEDIA:
-            on_board_led_blinking = true;
-            break;
-        case _NUMBERS:
-            on_board_led_blinking = true;
-            break;
-        case _SYMBOLS:
-            on_board_led_blinking = true;
-            break;
-        case _FUNCTION_KEYS:
-            on_board_led_blinking = true;
-            break;
-        case _GAMING:
-            set_on_board_led();
-            break;
-        case _GAMING_UTIL:
-            on_board_led_blinking = true;
-            break;
-        default:
-            /* gpio_write_pin_low(GP25); */
-            break;
-    }
+    layer_state_set_user_led(state);
     return state;
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+    return process_record_user_custom(keycode, record);
 }
 
 
