@@ -1,6 +1,8 @@
 // Copyright 2023 QMK
 // SPDX-License-Identifier: GPL-2.0-or-later
 
+#include "action_util.h"
+#include "quantum.h"
 #include QMK_KEYBOARD_H
 
 enum Layer {
@@ -15,9 +17,11 @@ enum Layer {
     _GAMING_UTIL,
 };
 
-enum CustomKeycodes {
+enum custom_keycodes {
     V_OSL = SAFE_RANGE,
 };
+
+#define _GAMING_OSL LT(_GAMING_UTIL, KC_V)
 
 // us international
 #define _KC_Å RALT(KC_W)
@@ -50,16 +54,29 @@ static bool on_board_led_high = false;
 static bool on_board_led_blinking = false;
 static uint32_t blink_on_board_led_delay = 250;
 
+bool holding_v = false;
+
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     switch (keycode) {
-        case V_OSL:
-            if (record->tap.count > 0) {
-                if (!record->event.pressed) {
-                    set_oneshot_layer(_GAMING_UTIL, ONESHOT_START);
-                }
-                return false;
+        case _GAMING_OSL:
+            if (record->tap.count == 1 && record->event.pressed) { // press
+                set_oneshot_layer(_GAMING_UTIL, ONESHOT_START);
             }
-            break;
+            if (record->tap.count == 0 && record->event.pressed) { // hold
+                register_code(KC_V);
+                holding_v = true;
+            }
+            if (!record->event.pressed) { // release
+                if (holding_v) {
+                    unregister_code(KC_V);
+                    holding_v = false;
+                }
+            }
+            return false;
+    }
+
+    if (IS_LAYER_ON(_GAMING_UTIL) && !record->event.pressed) {
+        clear_oneshot_layer_state(ONESHOT_PRESSED);
     }
     return true;
 }
@@ -199,7 +216,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,  KC_1, KC_2, KC_3, KC_4, /*,*/ KC_Y, KC_U, KC_I,    KC_O,   KC_P,
         KC_LCTL, KC_A, KC_W, KC_D, KC_5, /*,*/ KC_H, KC_J, KC_K,    KC_L,   KC_SCLN,
         KC_LSFT,  KC_Q, KC_S, KC_E, KC_R, /*,*/ KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH,
-        KC_ESC, V_OSL , KC_SPC, /*,*/ KC_ENT, LALT(KC_TAB), TO(_QWERTY)
+        KC_ESC, _GAMING_OSL , KC_SPC, /*,*/ KC_ENT, LALT(KC_TAB), TO(_QWERTY)
     ),
     [_GAMING_UTIL] = LAYOUT_ortho_36(
         KC_NO, KC_5, KC_6, KC_7, KC_8, /*,*/ KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
