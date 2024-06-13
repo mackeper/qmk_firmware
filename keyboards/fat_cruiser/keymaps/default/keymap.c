@@ -9,6 +9,13 @@
 #include "../custom_keycodes.h"
 #include "../led.h"
 
+#define _COPY LCTL(KC_C)
+#define _PASTE LCTL(KC_V)
+#define _CUT LCTL(KC_X)
+#define _UNDO LCTL(KC_Z)
+#define _REDO LCTL(KC_Y)
+#define _SELECT_ALL LCTL(KC_A)
+
 // us international
 #define _KC_Å RALT(KC_W)
 #define _KC_Ä RALT(KC_Q)
@@ -71,7 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_NAVIGATION] = LAYOUT_ortho_36(
         TO(_GAMING), KC_NO,   KC_NO,   KC_NO,   KC_NO, /*,*/ KC_NO,   KC_PSTE, KC_COPY, KC_CUT,  KC_UNDO,
         KC_LGUI,     KC_LALT, KC_LCTL, KC_LSFT, KC_NO, /*,*/ KC_CAPS, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,
-        KC_NO,       KC_RALT, KC_COPY, KC_PSTE, KC_NO, /*,*/ KC_INS,  KC_HOME, KC_PGDN, KC_PGUP, KC_END,
+        KC_NO,       KC_RALT, _COPY, _PASTE, KC_NO, /*,*/ KC_INS,  KC_HOME, KC_PGDN, KC_PGUP, KC_END,
         KC_NO,       KC_NO,   KC_NO,   /*,*/    KC_ENT, KC_TAB, KC_DEL
     ),
     [_MOUSE] = LAYOUT_ortho_36(
@@ -84,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TO(_GAMING), KC_NO,   KC_NO,   KC_NO,   KC_NO, /*,*/ KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
         KC_LGUI,     KC_LALT, KC_LCTL, KC_LSFT, KC_NO, /*,*/ KC_NO, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT,
         KC_NO,       KC_RALT, KC_NO,   KC_NO,   KC_NO, /*,*/ KC_NO, _KC_Å,   _KC_Ä,   _KC_Ö,   KC_NO,
-        KC_NO,       KC_NO,   KC_NO,   /*,*/    KC_MUTE, KC_MPLY, KC_MSTP
+        KC_NO,       KC_NO,   KC_NO,   /*,*/    KC_MPLY, KC_MSTP, KC_MUTE
     ),
     [_NUMBERS] = LAYOUT_ortho_36(
         KC_ASTR, KC_7, KC_8, KC_9, KC_EQUAL, /*,*/ KC_NO, KC_NO,   KC_NO,   KC_NO,   QK_BOOT,
