@@ -118,7 +118,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC, _GAMING_OSL , KC_SPC, /*,*/ KC_ENT, LALT(KC_TAB), TO(_QWERTY)
     ),
     [_GAMING_UTIL] = LAYOUT_ortho_36(
-        KC_NO, KC_6, KC_7, KC_8, KC_9, /*,*/ KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+        KC_BSLS, KC_6, KC_7, KC_8, KC_9, /*,*/ KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         KC_NO, KC_4, KC_5, KC_F, KC_I, /*,*/ KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         KC_Z,  KC_X, KC_C, KC_V, KC_0, /*,*/ KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         KC_T, KC_G, KC_B, /*,*/ KC_NO, KC_NO, KC_NO
