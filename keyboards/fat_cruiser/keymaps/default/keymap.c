@@ -4,7 +4,6 @@
 // TODO
 // Add Key Lock https://docs.qmk.fm/features/key_lock
 // Add Recording
-// Add caps word
 
 #include "action_util.h"
 #include "quantum.h"
@@ -81,9 +80,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _LT_ESC, _LT_BSPC, _LT_SPC, /*,*/ _LT_ENT, _LT_TAB, _LT_DEL
     ),
     [_NAVIGATION] = LAYOUT_ortho_36(
-        TO(_GAMING), KC_F13,  KC_F14,  KC_F15,  KC_F16, /*,*/ KC_NO,   KC_PSTE, KC_COPY, KC_CUT,  KC_UNDO,
-        KC_LGUI,     KC_LALT, KC_LCTL, KC_LSFT, KC_NO,  /*,*/ KC_CAPS, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,
-        KC_NO,       KC_RALT, _COPY,   _PASTE,  KC_NO,  /*,*/ KC_INS,  KC_HOME, KC_PGDN, KC_PGUP, KC_END,
+        TO(_GAMING), KC_F13,    KC_F14,  KC_F15,  KC_F16, /*,*/ CW_TOGG, KC_PSTE, KC_COPY, KC_CUT,  KC_UNDO,
+        KC_LGUI,     KC_LALT,   KC_LCTL, KC_LSFT, KC_NO,  /*,*/ KC_CAPS, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,
+        KC_NO,       _CUT_RALT, _COPY,   _PASTE,  KC_NO,  /*,*/ KC_INS,  KC_HOME, KC_PGDN, KC_PGUP, KC_END,
         KC_NO,       KC_NO,   KC_NO,   /*,*/    KC_ENT, KC_TAB, KC_DEL
     ),
     [_MOUSE] = LAYOUT_ortho_36(
@@ -99,7 +98,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO,       KC_NO,   KC_NO,   /*,*/    KC_MPLY, KC_MSTP, KC_MUTE
     ),
     [_NUMBERS] = LAYOUT_ortho_36(
-        KC_ASTR, KC_7, KC_8, KC_9, KC_EQUAL, /*,*/ KC_NO, KC_NO,   KC_NO,   KC_NO,   QK_BOOT,
+        KC_ASTR, KC_7, KC_8, KC_9, KC_EQUAL, /*,*/ KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
         KC_QUOT, KC_4, KC_5, KC_6, KC_PLUS,  /*,*/ KC_NO, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI,
         KC_GRV,  KC_1, KC_2, KC_3, KC_0,     /*,*/ KC_NO, KC_NO,   KC_NO,   KC_RALT, KC_NO,
         KC_NO, KC_BSLS, KC_MINS, /*,*/ KC_NO,    KC_NO, KC_NO
@@ -111,7 +110,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO,   KC_PIPE, KC_UNDS, /*,*/    KC_NO,   KC_NO, KC_NO
     ),
     [_FUNCTION_KEYS] = LAYOUT_ortho_36(
-        KC_F12, KC_F7, KC_F8, KC_F9, KC_PSCR, /*,*/ KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
+        KC_F12, KC_F7, KC_F8, KC_F9, KC_PSCR, /*,*/ KC_NO, KC_NO,   KC_NO,   KC_NO,   QK_BOOT,
         KC_F11, KC_F4, KC_F5, KC_F6, KC_SCRL, /*,*/ KC_NO, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI,
         KC_F10, KC_F1, KC_F2, KC_F3, KC_PAUS, /*,*/ KC_NO, KC_NO,   KC_NO,   KC_RALT, KC_NO,
         KC_NO,  KC_NO, KC_NO, /*,*/  KC_NO,   KC_NO, KC_NO

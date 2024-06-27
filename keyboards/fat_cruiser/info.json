@@ -12,7 +12,8 @@
         "mousekey": true,
         "nkro": true,
         "deferred_exec": true,
-        "dynamic_macro": true
+        "dynamic_macro": true,
+        "caps_word": true
     },
     "matrix_pins": {
         "cols": [
