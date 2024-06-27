@@ -1,6 +1,11 @@
 // Copyright 2023 QMK
 // SPDX-License-Identifier: GPL-2.0-or-later
 
+// TODO
+// Add Key Lock https://docs.qmk.fm/features/key_lock
+// Add Recording
+// Add caps word
+
 #include "action_util.h"
 #include "quantum.h"
 #include QMK_KEYBOARD_H
