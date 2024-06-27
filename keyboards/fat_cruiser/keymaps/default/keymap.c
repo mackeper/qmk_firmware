@@ -1,6 +1,11 @@
 // Copyright 2023 QMK
 // SPDX-License-Identifier: GPL-2.0-or-later
 
+// TODO
+// Add Key Lock https://docs.qmk.fm/features/key_lock
+// Add Recording
+// Add caps word
+
 #include "action_util.h"
 #include "quantum.h"
 #include QMK_KEYBOARD_H
@@ -76,21 +81,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _LT_ESC, _LT_BSPC, _LT_SPC, /*,*/ _LT_ENT, _LT_TAB, _LT_DEL
     ),
     [_NAVIGATION] = LAYOUT_ortho_36(
-        TO(_GAMING), KC_NO,   KC_NO,   KC_NO,   KC_NO, /*,*/ KC_NO,   KC_PSTE, KC_COPY, KC_CUT,  KC_UNDO,
-        KC_LGUI,     KC_LALT, KC_LCTL, KC_LSFT, KC_NO, /*,*/ KC_CAPS, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,
-        KC_NO,       KC_RALT, _COPY,   _PASTE,  KC_NO, /*,*/ KC_INS,  KC_HOME, KC_PGDN, KC_PGUP, KC_END,
+        TO(_GAMING), KC_F13,  KC_F14,  KC_F15,  KC_F16, /*,*/ KC_NO,   KC_PSTE, KC_COPY, KC_CUT,  KC_UNDO,
+        KC_LGUI,     KC_LALT, KC_LCTL, KC_LSFT, KC_NO,  /*,*/ KC_CAPS, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,
+        KC_NO,       KC_RALT, _COPY,   _PASTE,  KC_NO,  /*,*/ KC_INS,  KC_HOME, KC_PGDN, KC_PGUP, KC_END,
         KC_NO,       KC_NO,   KC_NO,   /*,*/    KC_ENT, KC_TAB, KC_DEL
     ),
     [_MOUSE] = LAYOUT_ortho_36(
-        TO(_GAMING), KC_NO,   KC_NO,   KC_NO,   KC_NO, /*,*/ KC_NO, KC_PSTE, KC_COPY, KC_CUT,  KC_UNDO,
-        KC_LGUI,     KC_LALT, KC_LCTL, KC_LSFT, KC_NO, /*,*/ KC_NO, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R,
-        KC_NO,       KC_RALT, KC_NO,   KC_NO,   KC_NO, /*,*/ KC_NO, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R,
+        TO(_GAMING), KC_F17,  KC_F18,  KC_F19,  KC_F20,  /*,*/    KC_NO, KC_PSTE, KC_COPY, KC_CUT,  KC_UNDO,
+        KC_LGUI,     KC_LALT, KC_LCTL, KC_LSFT, KC_NO,   /*,*/    KC_NO, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R,
+        KC_NO,       KC_RALT, KC_NO,   KC_NO,   KC_NO,   /*,*/    KC_NO, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R,
         KC_NO,       KC_NO,   KC_NO,   /*,*/    KC_BTN1, KC_BTN2, KC_BTN3
     ),
     [_MEDIA] = LAYOUT_ortho_36(
-        TO(_GAMING), KC_NO,   KC_NO,   KC_NO,   KC_NO, /*,*/ KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
-        KC_LGUI,     KC_LALT, KC_LCTL, KC_LSFT, KC_NO, /*,*/ KC_NO, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT,
-        KC_NO,       KC_RALT, KC_NO,   KC_NO,   KC_NO, /*,*/ KC_NO, _KC_Å,   _KC_Ä,   _KC_Ö,   KC_NO,
+        TO(_GAMING), KC_F21,  KC_F22,  KC_F23,  KC_F24,  /*,*/    KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
+        KC_LGUI,     KC_LALT, KC_LCTL, KC_LSFT, KC_NO,   /*,*/    KC_NO, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT,
+        KC_NO,       KC_RALT, KC_NO,   KC_NO,   KC_NO,   /*,*/    KC_NO, _KC_Å,   _KC_Ä,   _KC_Ö,   KC_NO,
         KC_NO,       KC_NO,   KC_NO,   /*,*/    KC_MPLY, KC_MSTP, KC_MUTE
     ),
     [_NUMBERS] = LAYOUT_ortho_36(
@@ -118,7 +123,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC, _GAMING_OSL , KC_SPC, /*,*/ KC_ENT, LALT(KC_TAB), TO(_QWERTY)
     ),
     [_GAMING_UTIL] = LAYOUT_ortho_36(
-        KC_NO, KC_6, KC_7, KC_8, KC_9, /*,*/ KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+        KC_BSLS, KC_6, KC_7, KC_8, KC_9, /*,*/ KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         KC_NO, KC_4, KC_5, KC_F, KC_I, /*,*/ KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         KC_Z,  KC_X, KC_C, KC_V, KC_0, /*,*/ KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         KC_T, KC_G, KC_B, /*,*/ KC_NO, KC_NO, KC_NO
